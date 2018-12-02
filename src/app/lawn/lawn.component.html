@@ -1,0 +1,17 @@
+<div class="control-btn">
+  <button (click)="startMoves()" [disabled]="isStarted" mat-raised-button color="primary">Start</button>
+  <button mat-raised-button (click)="showPositions()" color="accent">show Positions</button>
+  <button (click)="reset()" mat-raised-button color="warn">Reset</button>
+</div>
+
+<mat-grid-list [cols]="x+1" rowHeight="3:1">
+  <mat-grid-tile [style.background]="'lightgrey'" *ngFor="let cell of lawnGrid">
+    <ng-container *ngFor="let mower of mowers">
+      <app-mower
+        *ngIf="isMowerInCell(mower, cell)"
+        [direction]="mower.direction"
+        [style.background]="mower.mowerColor">
+      </app-mower>
+    </ng-container>
+  </mat-grid-tile>
+</mat-grid-list>
